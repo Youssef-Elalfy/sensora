@@ -1,0 +1,38 @@
+{
+  "name": "sensora-atelier",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint app components lib",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/bodoni-moda": "^5",
+    "@fontsource/manrope": "^5",
+    "@fontsource/tajawal": "^5",
+    "@fontsource/amiri": "^5",
+    "@react-three/drei": "^10",
+    "@react-three/fiber": "^9",
+    "gsap": "^3",
+    "lenis": "^1",
+    "next": "^16",
+    "react": "^19",
+    "react-dom": "^19",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/node": "^24",
+    "@types/three": "^0.182.0",
+    "eslint": "^9",
+    "eslint-config-next": "^16",
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4",
+    "@playwright/test": "^1.59"
+  }
+}

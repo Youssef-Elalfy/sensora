@@ -1,0 +1,87 @@
+{
+  "brand": {
+    "name": "SENSORA",
+    "subline": "ATELIER DE SENS",
+    "conceptLabel": "A fictional fragrance experience"
+  },
+  "nav": {
+    "collection": "Collection",
+    "story": "Our world",
+    "lab": "Scent lab",
+    "lang": "العربية",
+    "skip": "Skip to content"
+  },
+  "prologue": {
+    "headline": "Fragrance is a feeling.",
+    "enter": "Enter experience",
+    "loading": "Preparing your world"
+  },
+  "hero": {
+    "eyebrow": "THE SENSORY ATELIER / 2026",
+    "headline": "Wear what you feel.",
+    "description": "Three scents. Three worlds. One trace that feels like you.",
+    "cta": "Enter the collection",
+    "scroll": "Scroll to feel"
+  },
+  "invisible": {
+    "eyebrow": "02 / THE INVISIBLE",
+    "headline": "You cannot see a scent. Until now.",
+    "description": "A feeling suspended between light, memory and skin."
+  },
+  "worlds": {
+    "ember": {
+      "number": "01",
+      "name": "EMBER",
+      "headline": "Set your senses alight.",
+      "description": "Black cherry, rose and amber. A beautiful after-dark warmth.",
+      "notes": [
+        "Black cherry",
+        "Rose",
+        "Amber"
+      ]
+    },
+    "veil": {
+      "number": "02",
+      "name": "VEIL",
+      "headline": "Softness, beyond form.",
+      "description": "Iris, violet leaf and clean musk. A breath of stillness.",
+      "notes": [
+        "Iris",
+        "Violet leaf",
+        "Clean musk"
+      ]
+    },
+    "tidal": {
+      "number": "03",
+      "name": "TIDAL",
+      "headline": "Become the horizon.",
+      "description": "Sea salt, bergamot and cedar. The calm after the current.",
+      "notes": [
+        "Sea salt",
+        "Bergamot",
+        "Cedar"
+      ]
+    }
+  },
+  "lab": {
+    "eyebrow": "06 / THE SCENT LAB",
+    "headline": "Compose a feeling.",
+    "description": "An artistic fragrance concept explorer — not a chemical formulation tool.",
+    "select": "Choose a world",
+    "intensity": "Intensity",
+    "warmth": "Warmth",
+    "airiness": "Airiness",
+    "recipe": "Your signature",
+    "reset": "Reset",
+    "copy": "Copy signature",
+    "copied": "Copied",
+    "save": "Save signature",
+    "note": "A fictional digital concept experience."
+  },
+  "finale": {
+    "headline": "Leave a trace of wonder.",
+    "description": "SENSORA / ART YOU CAN ALMOST WEAR",
+    "cta": "Return to the lab",
+    "credit": "An independent creative portfolio concept — not a real retail product."
+  }
+}

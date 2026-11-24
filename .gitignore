@@ -1,0 +1,45 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+*.log
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env*
+!.env.example
+
+# Local tooling and agent configuration
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# Private creative kit, prompts and working notes (kept locally, never published)
+MASTER_PROMPT.md
+START_PROMPT_FOR_CODEX.txt
+README_START_HERE_AR.md
+ASSET_CREDITS_TEMPLATE.md
+TASKS.md
+references/
+brand/
+docs/0*.md
+docs/1*.md
+
+# Historical QA captures. Scripts and the final audit report are published.
+qa/**/*.jpg
+qa/**/*.png
+qa/**/*.webm
+qa/**/*.json
+qa/REPORT.md
+qa/cinematic/
+qa/composition/
+qa/final-audit/shots/
+qa/final-audit/work/
+!qa/final-audit/evidence/**
