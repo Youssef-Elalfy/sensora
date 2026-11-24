@@ -97,8 +97,10 @@ export function stoneFinish(
       "#include <color_fragment>",
       `#include <color_fragment>
  float line=vStone.x*7.+vStone.z*4.+vStone.y*10.+sin(vStone.x*8.+vStone.z*3.)*.7+sin(vStone.z*17.+vStone.x*5.)*.13;
- float vein=pow(.5+.5*cos(line),38.);
- diffuseColor.rgb=diffuseColor.rgb*(.7+.3*sin(line*1.7))+vec3(.064,.039,.041)*vein;
+ // Fine marble veining over a nearly even ground. Broad tonal bands read as stripes.
+ float drift=sin(vStone.x*2.3-vStone.z*3.1+sin(vStone.y*6.+vStone.x*1.7))*.5+.5;
+ float vein=pow(.5+.5*cos(line*.38),160.)+.4*pow(.5+.5*cos(line*.61+2.3),220.);
+ diffuseColor.rgb=diffuseColor.rgb*(.9+.1*drift)+vec3(.075,.052,.047)*vein;
  float contact=exp(-pow(abs(vStone.x/.89),4.)-pow(abs(vStone.z/.43),4.));
  diffuseColor.rgb*=1.-.66*contact*smoothstep(.12,.24,vStone.y);`,
     );

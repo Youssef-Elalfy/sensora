@@ -3,6 +3,7 @@ import {frameAt} from "@/lib/framing";
 import { useFrame } from "@react-three/fiber";
 import { RoundedBox } from "@react-three/drei/core/RoundedBox";
 import * as T from "three";
+import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { colors, scents, type Direction } from "@/lib/scents";
 import { petalGeometry, stoneFinish } from "@/lib/surfaces";
 
@@ -37,14 +38,20 @@ function ribbonGeometry() {
   g.computeVertexNormals();
   return g;
 }
+// Polished sea-worn minerals. The icosphere is welded before its normals are
+// computed so the surface shades smoothly instead of as flat facets.
 function stoneGeometry(detail: number) {
-  const g = new T.IcosahedronGeometry(1, detail),
+  const source = new T.IcosahedronGeometry(1, detail);
+  source.deleteAttribute("normal");
+  source.deleteAttribute("uv");
+  const g = mergeVertices(source),
     p = g.attributes.position;
+  source.dispose();
   for (let i = 0; i < p.count; i++) {
     const x = p.getX(i),
       y = p.getY(i),
       z = p.getZ(i),
-      v = 1 + 0.11 * Math.sin(6 * x + 4 * y) * Math.cos(5 * z - 2 * y);
+      v = 1 + 0.075 * Math.sin(2.3 * x + 1.1 * y + 0.4) * Math.cos(1.9 * z - 0.6 * y) + 0.022 * Math.sin(4.1 * z + 2.7 * x);
     p.setXYZ(i, x * v, y * v * 0.71, z * v * 0.88);
   }
   g.computeVertexNormals();
@@ -62,7 +69,7 @@ export default function WorldObjects({
     ember = useRef<T.Group>(null);
   const loop = useMemo(() => loopGeometry(), []),
     ribbon = useMemo(() => ribbonGeometry(), []),
-    stone = useMemo(() => stoneGeometry(2), []),
+    stone = useMemo(() => stoneGeometry(7), []),
     petal = useMemo(() => petalGeometry(), []);
   const beads=useRef<T.InstancedMesh>(null),beadPose=useMemo(()=>new T.Object3D(),[]);
   const knots = useRef<T.MeshPhysicalMaterial>(null),
@@ -191,11 +198,14 @@ export default function WorldObjects({
             rotation={[i, 0.6, i * 0.4]}
             scale={s}
           >
-            <meshStandardMaterial
-              color="#56827d"
-              roughness={0.72}
-              metalness={0.18}
-              flatShading
+            <meshPhysicalMaterial
+              color="#5f938b"
+              roughness={0.38}
+              metalness={0.06}
+              clearcoat={0.85}
+              clearcoatRoughness={0.22}
+              sheen={0.35}
+              sheenColor="#a9dcd2"
             />
           </mesh>
         ))}
@@ -213,8 +223,8 @@ export default function WorldObjects({
           <meshStandardMaterial
             color="#34242d"
             onBeforeCompile={stoneFinish}
-            roughness={0.62}
-            metalness={0.21}
+            roughness={0.42}
+            metalness={0.12}
           />
         </RoundedBox>
       </group>

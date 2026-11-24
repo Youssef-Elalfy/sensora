@@ -23,6 +23,21 @@ const shell: Section[] = [
   [0.963, 0.303, 0.242],
   [1.02, 0.29, 0.238],
 ];
+// Edition morphs bend the body width along its height. Resample long straight
+// spans so those curves stay smooth instead of resolving into visible facets.
+function densify(rows: readonly Section[], step = 0.075): Section[] {
+  const out: Section[] = [rows[0]];
+  for (let j = 1; j < rows.length; j++) {
+    const [y0, w0, d0] = rows[j - 1],
+      [y1, w1, d1] = rows[j],
+      n = Math.ceil(Math.abs(y1 - y0) / step);
+    for (let k = 1; k <= n; k++) {
+      const t = k / n;
+      out.push([y0 + (y1 - y0) * t, w0 + (w1 - w0) * t, d0 + (d1 - d0) * t]);
+    }
+  }
+  return out;
+}
 function signed(v: number, p: number) {
   return Math.sign(v) * Math.pow(Math.abs(v), p);
 }
@@ -131,9 +146,9 @@ export function bottleGeometry() {
     [1.02, 0.236, 0.165],
   ];
   // A continuous inward return makes the heavy optical heel and the shoulder lip visible.
-  const glass = vessel([...shell, ...[...cavity].reverse()], 0.0062, 192);
+  const glass = vessel([...densify(shell), ...densify([...cavity].reverse())], 0.0062, 192);
   const liquid = vessel(
-    [
+    densify([
       [-1.072, 0.78, 0.346],
       [-1.045, 0.848, 0.38],
       [-0.977, 0.894, 0.406],
@@ -143,7 +158,7 @@ export function bottleGeometry() {
       [0.546, 0.84, 0.389],
       [0.538, 0.68, 0.31],
       [0.537, 0.04, 0.02],
-    ],
+    ]),
     0.002,
   );
   const cap = vessel(
@@ -205,11 +220,13 @@ export function labelTexture(scent: Scent) {
   const c = canvas.getContext("2d");
   if (!c) throw Error("Label surface unavailable");
   // Screen-printed enamel leaves the glass and the liquid visible around the typography.
-  const ink=scent==="ember"?"#ffdfaa":scent==="veil"?"#281329":"#ecffff";
+  // Veil prints dark ink on a pale liquid. A light halo there washes the fine
+  // lines into the lilac, so only the light inks keep their soft drop shadow.
+  const ink=scent==="ember"?"#ffdfaa":scent==="veil"?"#1c0a1e":"#ecffff";
   c.strokeStyle=ink;c.lineWidth=3.5;
   c.textAlign = "center";
   c.fillStyle = ink;
-  c.shadowColor=scent==="veil"?"#eedff7":"#401d21";c.shadowBlur=2;
+  c.shadowColor=scent==="veil"?"transparent":"#401d21";c.shadowBlur=scent==="veil"?0:2;
   function letters(s: string, y: number, font: string, space: number) {
     if (!c) return;
     c.font = font;
@@ -248,7 +265,7 @@ export function labelTexture(scent: Scent) {
   return tex;
 }
 export function labelPanel() {
-  const g = new T.PlaneGeometry(1.26, 1.12, 40, 1),
+  const g = new T.PlaneGeometry(1.26, 1.12, 40, 16),
     p = g.attributes.position;
   for (let i = 0; i < p.count; i++) {
     const x = p.getX(i);

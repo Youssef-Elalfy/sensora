@@ -389,6 +389,7 @@ html[data-index-open] { overflow: hidden; }
 .type-word {white-space:nowrap;}
 .type-mask {overflow:clip; vertical-align:baseline; padding:.28em .15em .30em; margin:-.28em -.15em -.30em;}
 .type-piece {transform-origin:50% 85%;}
+.kern-pair {margin-inline-end:-.11em;}
 @media(hover:hover) and (pointer:fine) {
  .menu span,.cta svg,.labnav svg,.switch button,.cta {transition:width .32s,translate .32s,background-color .32s,border-color .32s;}
  .menu:hover span:last-child {width:26px;}

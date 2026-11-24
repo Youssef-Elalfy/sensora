@@ -92,7 +92,18 @@ export default function Experience({ locale }: { locale: Locale }) {
     const n = (index + 3) % 3;
     director.current.hero = scents[n];
     setHero(n);
+    try { sessionStorage.setItem("sensora-hero", String(n)); } catch {}
   };
+  useEffect(() => {
+    let saved = 0;
+    try { saved = Number(sessionStorage.getItem("sensora-hero")) || 0; } catch {}
+    if (saved < 1 || saved > 2) return;
+    const frame = requestAnimationFrame(() => {
+      director.current.hero = scents[saved];
+      setHero(saved);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const world = c.worlds[scents[hero]];
   return (
     <div
@@ -154,7 +165,7 @@ export default function Experience({ locale }: { locale: Locale }) {
               {c.hero.eyebrow}
             </p>
             <h1 id="hero-title" aria-label={c.hero.headline}>
-              <span><MotionText text={ar ? "ارتدِ ما" : "Wear what"} letters={!ar}/></span>
+              <span><MotionText text={ar ? "ارتدِ ما" : "Wear what"}/></span>
               <em><MotionText text={ar ? "تشعر به." : "you feel."}/></em>
             </h1>
             <p className="dek">{c.hero.description}</p>

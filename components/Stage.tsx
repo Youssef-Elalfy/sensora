@@ -406,6 +406,10 @@ function Set({
     </>
   );
 }
+// Integrated graphics keep up to 1.25x density so scaled laptop displays (125%)
+// are not upscaled from a 1x buffer. Sustained slow frames step down to the
+// display's CSS pixel grid first, and below it only on 1x displays.
+function reducedDensity(){return devicePixelRatio>1?1:.9;}
 function worldPlaneWidth(width:number,height:number){return 9.1*(width/height)+4.6;}
 function loopMode(){return document.hidden?"never":matchMedia("(prefers-reduced-motion: reduce)").matches?"demand":"always";}
 function subscribeMode(notify:()=>void){
@@ -417,17 +421,19 @@ export default function Stage(props: StageProps) {
   const mode=useSyncExternalStore(subscribeMode,loopMode,()=>"demand" as const);
   const [economical, setEconomical] = useState(false);
   const [lowerResolution, setLowerResolution] = useState(false);
+  const [cssDensity, setCssDensity] = useState(false);
   const lowerCost = useCallback((lower:boolean) => {
     if(lower)setEconomical(true);
     setLowerResolution(lower);
   }, []);
+  const settleDensity = useCallback(() => setCssDensity(true), []);
   return (
     <div className="stage" aria-hidden="true">
       <Boundary onFail={props.onFail}>
         <Canvas
           frameloop={mode}
           camera={{ fov: 2*Math.atan(.2)*180/Math.PI, position: [0,.24,16], near:.12, far:70 }}
-          dpr={lowerResolution ? .9 : economical ? 1 : [1, 1.5]}
+          dpr={lowerResolution ? reducedDensity() : economical ? (cssDensity ? 1 : [1, 1.25]) : [1, 1.5]}
           onCreated={({ gl }) => {
             const context = gl.getContext(),
               ext = context.getExtension("WEBGL_debug_renderer_info");
@@ -448,7 +454,7 @@ export default function Stage(props: StageProps) {
           }}
         >
 
-          <FrameClock director={props.director} lowerCost={lowerCost} />
+          <FrameClock director={props.director} lowerCost={lowerCost} economical={economical && !cssDensity} settleDensity={settleDensity} />
           <Suspense fallback={null}>
             <Set {...props} economical={economical} />
           </Suspense>
@@ -470,9 +476,9 @@ function makePollen(){
  fragmentShader:`uniform vec3 uTint;varying float vAlpha;void main(){float a=max(0.,1.-length(gl_PointCoord-.5)*2.);gl_FragColor=vec4(mix(vec3(.9,.75,.64),uTint,.18),a*a*vAlpha);}`});
  return {geometry,material};
 }
-function FrameClock({director,lowerCost}:{director:RefObject<Direction>;lowerCost:(lower:boolean)=>void}) {
+function FrameClock({director,lowerCost,economical,settleDensity}:{director:RefObject<Direction>;lowerCost:(lower:boolean)=>void;economical:boolean;settleDensity:()=>void}) {
   const {invalidate}=useThree();
-  const sample=useRef({frames:0,seconds:0,slowWindows:0,fastWindows:0,lowered:false});
+  const sample=useRef({frames:0,seconds:0,slowWindows:0,fastWindows:0,denseWindows:0,lowered:false});
   useEffect(()=>{
     const query=matchMedia("(prefers-reduced-motion: reduce)");
     let scheduled=0;
@@ -490,6 +496,13 @@ function FrameClock({director,lowerCost}:{director:RefObject<Direction>;lowerCos
     v.frames++;v.seconds+=dt;
     if(v.seconds<1.2)return;
     const fps=v.frames/v.seconds;
+    // First tier, integrated graphics on scaled displays: if the 1.25x buffer
+    // cannot hold 45 fps, settle on the CSS pixel grid for the session. A
+    // one-way step avoids visible resolution changes while browsing.
+    if(economical&&devicePixelRatio>1){
+      v.denseWindows=fps<45?v.denseWindows+1:0;
+      if(v.denseWindows>=2){v.denseWindows=0;v.slowWindows=0;settleDensity();return;}
+    }
     v.slowWindows=fps<35?v.slowWindows+1:0;
     v.fastWindows=fps>55?v.fastWindows+1:0;
     v.frames=0;v.seconds=0;

@@ -1,5 +1,5 @@
 "use client";
-import { useState, type RefObject } from "react";
+import { useEffect, useState, type RefObject } from "react";
 import {
   updateDirection,
   scents,
@@ -14,6 +14,24 @@ import {
 import {MotionText} from "./MotionText";
 import { Arrow } from "./Marks";
 const axes = ["intensity", "warmth", "airiness"] as const;
+const storageKey = "sensora-formula";
+// The formula survives a language switch, which loads the other locale's page.
+function restore(): Formula | null {
+  try {
+    const raw: unknown = JSON.parse(sessionStorage.getItem(storageKey) ?? "null");
+    if (!raw || typeof raw !== "object") return null;
+    const value = raw as Record<string, unknown>;
+    const scent = scents.find((s) => s === value.scent);
+    if (!scent) return null;
+    const level = (k: (typeof axes)[number]) => {
+      const n = value[k];
+      return typeof n === "number" && n >= 0 && n <= 100 ? Math.round(n) : original[k];
+    };
+    return { scent, intensity: level("intensity"), warmth: level("warmth"), airiness: level("airiness") };
+  } catch {
+    return null;
+  }
+}
 export default function Lab({
   locale,
   director,
@@ -30,7 +48,18 @@ export default function Lab({
     updateDirection(director, { formula: next });
     if(next.scent!==state.scent)onEdition(next.scent);
     setState(next);
+    try { sessionStorage.setItem(storageKey, JSON.stringify(next)); } catch {}
   };
+  useEffect(() => {
+    const saved = restore();
+    if (!saved) return;
+    const frame = requestAnimationFrame(() => {
+      updateDirection(director, { formula: saved });
+      onEdition(saved.scent);
+      setState(saved);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [director, onEdition]);
   const fmt = (v: number) => v.toLocaleString(ar ? "ar-EG" : "en");
   const world = c.worlds[state.scent],
     summary = world.notes.join(ar ? "، " : " · ");
