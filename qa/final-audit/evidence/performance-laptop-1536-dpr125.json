@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-24T16:17:58.414Z",
+  "conditions": "Headless Chromium 1248 on this host, production build via next start, isolated run",
+  "results": [
+    {
+      "chapter": "first-breath",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 58.3,
+      "medianFrameMs": 15.7,
+      "p95FrameMs": 26.5,
+      "typicalDrawCalls": 11,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 6,
+      "layoutShift": 0
+    },
+    {
+      "chapter": "ember",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 51.9,
+      "medianFrameMs": 17.6,
+      "p95FrameMs": 32.5,
+      "typicalDrawCalls": 12,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 8,
+      "layoutShift": 0
+    },
+    {
+      "chapter": "veil",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 53.3,
+      "medianFrameMs": 16.6,
+      "p95FrameMs": 30.2,
+      "typicalDrawCalls": 12,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 9,
+      "layoutShift": 0
+    },
+    {
+      "chapter": "tidal",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 52,
+      "medianFrameMs": 17.1,
+      "p95FrameMs": 32.4,
+      "typicalDrawCalls": 15,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 10,
+      "layoutShift": 0
+    },
+    {
+      "chapter": "lab",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 44.8,
+      "medianFrameMs": 19.1,
+      "p95FrameMs": 41.2,
+      "typicalDrawCalls": 12,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 10,
+      "layoutShift": 0
+    },
+    {
+      "chapter": "ritual",
+      "viewport": [
+        1536,
+        864
+      ],
+      "devicePixelRatio": 1.25,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00003E9B) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "renderedFps": 47.5,
+      "medianFrameMs": 18,
+      "p95FrameMs": 36.9,
+      "typicalDrawCalls": 12,
+      "drawingBuffer": [
+        1536,
+        864
+      ],
+      "readyMs": 5255,
+      "longTasks": 12,
+      "layoutShift": 0
+    }
+  ]
+}

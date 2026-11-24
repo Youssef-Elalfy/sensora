@@ -9,6 +9,7 @@ SENSORA is an independent fictional fragrance portfolio concept. The three accor
 | SENSORA rosette, wordmark treatment, interface and art direction | Original project artwork based on the owner's SENSORA creative kit. |
 | Editorial copy and reference palette | Supplied bilingual project copy and brand tokens. |
 | Still image for unavailable WebGL | Edition-specific transparent product stills and a separate silk plate rendered from the original Three.js geometry and shader. |
+| Screenshots, cover, Open Graph card and motion preview (`docs/media/`, `public/og.jpg`) | Real captures of this application, composited with its own typefaces. No generated or stock imagery. |
 | Bodoni Moda | Bodoni Moda Project Authors, distributed through Fontsource under SIL OFL 1.1. |
 | Manrope | Manrope Project Authors, distributed through Fontsource under SIL OFL 1.1. |
 | Tajawal | Google Inc., distributed through Fontsource under SIL OFL 1.1. |

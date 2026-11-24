@@ -72,6 +72,9 @@ export default function WorldObjects({
     stone = useMemo(() => stoneGeometry(7), []),
     petal = useMemo(() => petalGeometry(), []);
   const beads=useRef<T.InstancedMesh>(null),beadPose=useMemo(()=>new T.Object3D(),[]);
+  // The plinth takes a dark stone tone from the edition carried into the Ritual.
+  const plinth = useRef<T.MeshStandardMaterial>(null),
+    stones = useMemo(() => ({ ember: new T.Color("#34242d"), veil: new T.Color("#3a2f3d"), tidal: new T.Color("#1c3033") }), []);
   const knots = useRef<T.MeshPhysicalMaterial>(null),
     time = useRef(0);
   useFrame((_, dt) => {
@@ -145,6 +148,7 @@ export default function WorldObjects({
       y - 0.98 * sm,
       -0.26,
     );
+    if (plinth.current) plinth.current.color.lerp(stones[s], d.reduced ? 1 : 1 - Math.exp(-Math.min(dt, 0.1) * 6));
     update(
       base.current,
       weight(6),
@@ -221,6 +225,7 @@ export default function WorldObjects({
           rotation={[0.04, -0.24, 0]}
         >
           <meshStandardMaterial
+            ref={plinth}
             color="#34242d"
             onBeforeCompile={stoneFinish}
             roughness={0.42}

@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-24T16:36:27.123Z",
+  "base": "http://127.0.0.1:3210",
+  "results": [
+    {
+      "name": "en ember: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=2 edition=ember title=EMBER"
+    },
+    {
+      "name": "en veil: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=3 edition=veil title=VEIL"
+    },
+    {
+      "name": "en tidal: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=4 edition=tidal title=TIDAL"
+    },
+    {
+      "name": "en document direction",
+      "ok": true,
+      "detail": "ltr/en"
+    },
+    {
+      "name": "ar ember: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=2 edition=ember title=EMBER"
+    },
+    {
+      "name": "ar veil: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=3 edition=veil title=VEIL"
+    },
+    {
+      "name": "ar tidal: chapter, edition, title, description",
+      "ok": true,
+      "detail": "chapter=4 edition=tidal title=TIDAL"
+    },
+    {
+      "name": "ar document direction",
+      "ok": true,
+      "detail": "rtl/ar"
+    },
+    {
+      "name": "hero next cycles Veil → Tidal → Ember",
+      "ok": true,
+      "detail": "Veil/veil,Tidal/tidal,Ember/ember"
+    },
+    {
+      "name": "hero previous via keyboard",
+      "ok": true,
+      "detail": "Tidal"
+    },
+    {
+      "name": "lab selection changes repeatedly",
+      "ok": true,
+      "detail": "veil:veil:VEIL tidal:tidal:TIDAL ember:ember:EMBER veil:veil:VEIL tidal:tidal:TIDAL"
+    },
+    {
+      "name": "lab scent selection via keyboard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "intensity slider via keyboard",
+      "ok": true,
+      "detail": "65"
+    },
+    {
+      "name": "ritual inherits lab selection (tidal)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ritual follows a changed selection (veil)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "world chapters keep their own edition after lab changes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "language switch keeps chapter, edition and formula",
+      "ok": true,
+      "detail": "chapter=6 edition=veil pressed=veil intensity=٦٥"
+    },
+    {
+      "name": "reset restores the original formula",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "signature download",
+      "ok": true,
+      "detail": "SENSORA-EMBER-ar.txt"
+    },
+    {
+      "name": "index opens, Escape closes, focus returns",
+      "ok": true,
+      "detail": "open=true closed=true focus=true"
+    },
+    {
+      "name": "index link lands on Tidal",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "notes explorer opens and switches note",
+      "ok": true,
+      "detail": "Rose / Petal"
+    },
+    {
+      "name": "wheel scroll forward then back restores hero state",
+      "ok": true,
+      "detail": "down→chapter 6, back→chapter 0, y=0"
+    },
+    {
+      "name": "en responsive bounds at 10 viewports × 7 chapters",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "ar responsive bounds at 10 viewports × 7 chapters",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion: scene ready",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "WebGL unavailable: fallback edition with working lab",
+      "ok": true,
+      "detail": "fallback-art tidal"
+    },
+    {
+      "name": "no unexpected page errors, console errors or failed requests",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "errors": [
+    "http://127.0.0.1:3210/en console THREE.WebGLRenderer: Error creating WebGL context.",
+    "http://127.0.0.1:3210/en console Error: Error creating WebGL context.\n    at new nB (http://127.0.0.1:3210/_next/static/chunks/b536a0f1.7f52afc25719f851.js:351:23387)\n    at f (http://127.0.0.1:3210/_next/static/chunks/e49654ac.d18991dfbe3404b7.js:12:20156)\n    at Object.configure (http://127.0.0.1:3210/_next/static/chunks/e49654ac.d18991dfbe3404b7.js:12:20292)\n    at http://127.0.0.1:3210/_next/static/chunks/454.0f9b52d3c53959b3.js:1:8264\n    at iC (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:93959)\n    at ua (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:104571)\n    at uk (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:118175)\n    at ua (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:106916)\n    at uk (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:118175)\n    at ua (http://127.0.0.1:3210/_next/static/chunks/4bd1b696-c7408084347438ae.js:1:104595)"
+  ]
+}

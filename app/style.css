@@ -217,6 +217,9 @@ a {
   display: block;
   white-space: nowrap;
 }
+.display em {
+  white-space: nowrap;
+}
 .hero h1 > em,
 .display em {
   color: var(--blush);
