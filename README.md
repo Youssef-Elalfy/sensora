@@ -6,8 +6,8 @@
 <p align="center"><b>Digital Fragrance Lab</b><br><i>Wear what you feel.</i></p>
 
 <p align="center">
-  <a href="__LIVE_URL__/en"><b>Live experience</b></a> &nbsp;·&nbsp;
-  <a href="__LIVE_URL__/ar"><b>النسخة العربية</b></a> &nbsp;·&nbsp;
+  <a href="https://sensora-cyan.vercel.app/en"><b>Live experience</b></a> &nbsp;·&nbsp;
+  <a href="https://sensora-cyan.vercel.app/ar"><b>النسخة العربية</b></a> &nbsp;·&nbsp;
   <a href="docs/CASE_STUDY.md"><b>Case study</b></a> &nbsp;·&nbsp;
   <a href="docs/media/preview.mp4"><b>Motion preview (MP4)</b></a>
 </p>

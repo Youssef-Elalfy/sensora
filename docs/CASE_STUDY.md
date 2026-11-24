@@ -3,8 +3,8 @@
 <p align="center"><img src="media/cover.webp" alt="SENSORA cover" width="100%"></p>
 
 <p align="center">
-  <a href="__LIVE_URL__/en"><b>Live experience</b></a> &nbsp;·&nbsp;
-  <a href="__LIVE_URL__/ar"><b>Arabic</b></a> &nbsp;·&nbsp;
+  <a href="https://sensora-cyan.vercel.app/en"><b>Live experience</b></a> &nbsp;·&nbsp;
+  <a href="https://sensora-cyan.vercel.app/ar"><b>Arabic</b></a> &nbsp;·&nbsp;
   <a href="../README.md"><b>Repository</b></a> &nbsp;·&nbsp;
   <a href="media/preview.mp4"><b>Motion preview</b></a>
 </p>

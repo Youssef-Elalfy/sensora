@@ -150,3 +150,12 @@ p95 frame times at 1440 × 900 were 20–26 ms. The previously reported Hero 53.
 ## Specialist agents
 
 Your configured agents are explicit-invocation only, and every finding above needed hands-on browser measurement and source changes in the same loop. The audit was therefore done directly in one session rather than split across agents. No specialist agent was invoked.
+
+## Production verification
+
+**Live:** [sensora-cyan.vercel.app/en](https://sensora-cyan.vercel.app/en) · [sensora-cyan.vercel.app/ar](https://sensora-cyan.vercel.app/ar). The project is `sensora` on Vercel, built from `Youssef-Elalfy/sensora@main` with the Next.js preset, and is publicly accessible.
+
+- `/en` and `/ar` return 200, `/` redirects (307) to `/en`, and the Open Graph card, font licences and fallback stills are served.
+- `/ar` serves `lang="ar" dir="rtl"`, an Arabic title, a canonical URL, `en`/`ar`/`x-default` alternates and an absolute `og:image` on the production origin.
+- The same 28-check functional suite passed **28/28 against the live deployment**. It drove the real WebGL scene in Chromium on the UHD 630. [Production results](evidence/functional-results-production.json)
+- Live screenshots of the desktop (EN) and phone (AR) layouts matched the local production build, with fonts, 3D scene, Lab and Ritual all present.
